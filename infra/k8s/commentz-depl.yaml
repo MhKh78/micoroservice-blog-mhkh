@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: commentz-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commentz
+  template:
+    metadata:
+      labels:
+        app: commentz
+    spec:
+      containers:
+        - name: commentz
+          image: mhkh/commentz:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: commentz-srv
+spec:
+  selector:
+    app: commentz
+  ports: 
+    - name: commentz
+      protocol: TCP
+      port: 4001
+      targetPort: 4001

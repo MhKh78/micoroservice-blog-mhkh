@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: moderationz-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: moderationz
+  template:
+    metadata:
+      labels:
+        app: moderationz
+    spec:
+      containers:
+        - name: moderationz
+          image: mhkh/moderationz:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: moderationz-srv
+spec:
+  selector:
+    app: moderationz
+  ports: 
+    - name: moderationz
+      protocol: TCP
+      port: 4003
+      targetPort: 4003
