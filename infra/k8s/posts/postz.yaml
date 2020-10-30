@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: postz
+spec:
+  containers:
+    - name: postz
+      image: mhkh/postz:latest

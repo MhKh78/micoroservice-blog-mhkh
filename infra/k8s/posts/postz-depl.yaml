@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: postz-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postz
+  template:
+    metadata:
+      labels:
+        app: postz
+    spec:
+      containers:
+        - name: postz
+          image: mhkh/postz:latest
