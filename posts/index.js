@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:3000',
   })
 );
 
@@ -34,8 +34,8 @@ app.post('/posts', async (req, res) => {
       type: 'PostCreated',
       data: {
         id,
-        title
-      }
+        title,
+      },
     });
   } catch (e) {
     console.log(e);
@@ -56,4 +56,4 @@ app.post('/events', (req, res) => {
 
 app.on('SIGNIT', () => console.log('test'));
 
-app.listen(4000, () => console.log('listening on 4000'));
+app.listen(4000, () => console.log('listening on 4000 yo'));
