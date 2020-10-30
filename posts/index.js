@@ -6,11 +6,11 @@ const axios = require('axios').default;
 
 const app = express();
 app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-  })
-);
+// app.use(
+//   cors({
+//     origin: 'http://localhost:3000',
+//   })
+// );
 
 const posts = {};
 
@@ -30,7 +30,7 @@ app.post('/posts', async (req, res) => {
   posts[id] = { id, title };
 
   try {
-    const data = await axios.post('http://localhost:4005/events', {
+    const data = await axios.post('http://event-buz-srv:4005/events', {
       type: 'PostCreated',
       data: {
         id,

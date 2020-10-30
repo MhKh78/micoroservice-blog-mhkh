@@ -17,10 +17,10 @@ app.post('/events', async (req, res) => {
 
   // Error Handle *HERE* Might Not Be A Good Idead If We Have Event Sync
   try {
-    await axios.post('http://localhost:4000/events', event);
-    await axios.post('http://localhost:4001/events', event);
-    await axios.post('http://localhost:4002/events', event);
-    await axios.post('http://localhost:4003/events', event);
+    await axios.post('http://postz-srv:4000/events', event);
+    // await axios.post('http://localhost:4001/events', event);
+    // await axios.post('http://localhost:4002/events', event);
+    // await axios.post('http://localhost:4003/events', event);
   } catch (e) {
     let status = 502;
     let message = e.message;

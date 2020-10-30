@@ -5,11 +5,11 @@ const axios = require('axios').default;
 
 const app = express();
 app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: 'http://localhost:3000'
-  })
-);
+// app.use(
+//   cors({
+//     origin: 'http://localhost:3000',
+//   })
+// );
 
 const posts = {};
 
@@ -54,7 +54,7 @@ app.post('/events', (req, res) => {
 app.listen(4002, async () => {
   console.log('listening on 4002');
 
-  const res = await axios.get('http://localhost:4005/events');
+  const res = await axios.get('http://event-buz-srv:4005/events');
 
   for (let event of res.data) {
     const { type, data } = event;

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: event-buz-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-buz
+  template:
+    metadata:
+      labels:
+        app: event-buz
+    spec:
+      containers:
+        - name: event-buz
+          image: mhkh/event-buz:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-buz-srv
+spec:
+  selector:
+    app: event-buz
+  # type: ClusterIP
+  ports: 
+    - name: event-buz
+      protocol: TCP
+      port: 4005
+      targetPort: 4005

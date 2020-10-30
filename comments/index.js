@@ -6,11 +6,11 @@ const { randomBytes } = require('crypto');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: 'http://localhost:3000'
-  })
-);
+// app.use(
+//   cors({
+//     origin: 'http://localhost:3000',
+//   })
+// );
 
 const commentsByPostId = {};
 
@@ -31,14 +31,14 @@ app.post('/posts/:id/comments', async (req, res) => {
 
   comments.push({ id: commentId, content, status: 'pending' });
   try {
-    axios.post('http://localhost:4005/events', {
+    axios.post('http://event-buz-srv:4005/events', {
       type: 'CommentCreated',
       data: {
         id: commentId,
         content,
         status: 'pending',
-        postId: req.params.id
-      }
+        postId: req.params.id,
+      },
     });
   } catch (e) {
     return res
@@ -64,14 +64,14 @@ app.post('/events', async (req, res) => {
     comment.status = status;
 
     try {
-      await axios.post('http://localhost:4005/events', {
+      await axios.post('http://event-buz-srv:4005/events', {
         type: 'CommentUpdated',
         data: {
           id,
           postId,
           status,
-          content
-        }
+          content,
+        },
       });
     } catch (e) {
       return res
